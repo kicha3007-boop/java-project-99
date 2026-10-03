@@ -71,13 +71,18 @@ public class DataInitializer implements ApplicationRunner {
                     }
                 });
 
-        // На пустом списке фронтенд показывает заглушку вместо доски, и колонок статусов не видно
+        // Доска фронтенда рисует колонку только для статуса, в котором есть задачи, а на пустом
+        // списке — заглушку. Поэтому стартовая задача заводится в каждом статусе по умолчанию.
         if (taskRepository.count() == 0) {
-            var task = new Task();
-            task.setName("Welcome to Task Manager");
-            task.setDescription("Drag the card between columns to change its status");
-            task.setTaskStatus(taskStatusRepository.findBySlug("draft").orElseThrow());
-            taskRepository.save(task);
+            var index = 1;
+            for (var entry : DEFAULT_STATUSES) {
+                var task = new Task();
+                task.setName("Example task: " + entry.getValue());
+                task.setDescription("Drag the card between columns to change its status");
+                task.setIndex(index++);
+                task.setTaskStatus(taskStatusRepository.findBySlug(entry.getKey()).orElseThrow());
+                taskRepository.save(task);
+            }
         }
     }
 }
