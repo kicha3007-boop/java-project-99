@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: app
+  profiles:
+    default: dev
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+
+server:
+  address: 0.0.0.0
+  port: ${PORT:8080}
+
+# Ключи подписи JWT в PEM; без них приложение создаёт пару ключей при старте
+rsa:
+  public-key: ${RSA_PUBLIC_KEY:}
+  private-key: ${RSA_PRIVATE_KEY:}
+
+sentry:
+  dsn: ${SENTRY_DSN:}
+  traces-sample-rate: 1.0
+  send-default-pii: false
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

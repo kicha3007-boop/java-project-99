@@ -1,0 +1,7 @@
+{
+  "name": "app",
+  "private": true,
+  "dependencies": {
+    "@hexlet/java-task-manager-frontend": "^1.0.26"
+  }
+}

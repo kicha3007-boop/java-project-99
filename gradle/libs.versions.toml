@@ -1,0 +1,41 @@
+[versions]
+spring-boot = "3.5.6"
+spring-dependency-management = "1.1.7"
+lombok-plugin = "8.14.2"
+spotless-plugin = "7.2.1"
+versions-plugin = "0.52.0"
+sentry-plugin = "5.12.0"
+jackson-databind-nullable = "0.2.6"
+springdoc = "2.8.13"
+sentry = "8.22.0"
+datafaker = "2.4.4"
+instancio = "5.5.1"
+json-unit = "4.1.1"
+
+[libraries]
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+spring-boot-starter-security = { module = "org.springframework.boot:spring-boot-starter-security" }
+spring-boot-starter-oauth2-resource-server = { module = "org.springframework.boot:spring-boot-starter-oauth2-resource-server" }
+spring-boot-starter-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator" }
+spring-boot-devtools = { module = "org.springframework.boot:spring-boot-devtools" }
+spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-starter-test" }
+spring-security-test = { module = "org.springframework.security:spring-security-test" }
+h2 = { module = "com.h2database:h2" }
+postgresql = { module = "org.postgresql:postgresql" }
+jackson-databind-nullable = { module = "org.openapitools:jackson-databind-nullable", version.ref = "jackson-databind-nullable" }
+springdoc-openapi-ui = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", version.ref = "springdoc" }
+sentry-spring-boot = { module = "io.sentry:sentry-spring-boot-starter-jakarta", version.ref = "sentry" }
+datafaker = { module = "net.datafaker:datafaker", version.ref = "datafaker" }
+instancio-junit = { module = "org.instancio:instancio-junit", version.ref = "instancio" }
+json-unit-assertj = { module = "net.javacrumbs.json-unit:json-unit-assertj", version.ref = "json-unit" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" }
+lombok = { id = "io.freefair.lombok", version.ref = "lombok-plugin" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless-plugin" }
+versions = { id = "com.github.ben-manes.versions", version.ref = "versions-plugin" }
+sentry = { id = "io.sentry.jvm.gradle", version.ref = "sentry-plugin" }
