@@ -1,9 +1,11 @@
 package hexlet.code.component;
 
 import hexlet.code.model.Label;
+import hexlet.code.model.Task;
 import hexlet.code.model.TaskStatus;
 import hexlet.code.model.User;
 import hexlet.code.repository.LabelRepository;
+import hexlet.code.repository.TaskRepository;
 import hexlet.code.repository.TaskStatusRepository;
 import hexlet.code.repository.UserRepository;
 import java.util.List;
@@ -15,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-/** Администратор, статусы и метки по умолчанию; повторный запуск ничего не задваивает. */
+/** Администратор, статусы, метки и стартовая задача; повторный запуск ничего не задваивает. */
 @Component
 @RequiredArgsConstructor
 public class DataInitializer implements ApplicationRunner {
@@ -37,6 +39,7 @@ public class DataInitializer implements ApplicationRunner {
     private final UserRepository userRepository;
     private final TaskStatusRepository taskStatusRepository;
     private final LabelRepository labelRepository;
+    private final TaskRepository taskRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -67,5 +70,14 @@ public class DataInitializer implements ApplicationRunner {
                         labelRepository.save(label);
                     }
                 });
+
+        // На пустом списке фронтенд показывает заглушку вместо доски, и колонок статусов не видно
+        if (taskRepository.count() == 0) {
+            var task = new Task();
+            task.setName("Welcome to Task Manager");
+            task.setDescription("Drag the card between columns to change its status");
+            task.setTaskStatus(taskStatusRepository.findBySlug("draft").orElseThrow());
+            taskRepository.save(task);
+        }
     }
 }
